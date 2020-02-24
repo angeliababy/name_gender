@@ -1,10 +1,13 @@
 本项目完整源码地址：
+
 https://github.com/angeliababy/name_gender
 
 项目博客地址:
+
 https://blog.csdn.net/qq_29153321/article/details/104043632
 
-方法一：:
+方法一：
+
 调用包，只适合中文，原理也是贝叶斯算法
 ```
 #!/usr/bin/env python
@@ -23,9 +26,13 @@ for name in names:
     a = ngender.guess(name)
     print(a[0], a[1])
 ```
-方法二：贝叶斯算法
+
+方法二：
+贝叶斯算法
+
 对于一个分类问题，如果我们只需要得到其标签，我们只需要求解：
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200120141126717.png)
+
 1.计算每个汉字的男女概率
 ```
 frequency_list_f = defaultdict(int)
@@ -60,14 +67,20 @@ base_m += sum([math.log(1 - frequency_list_m[char]) for char in frequency_list_m
 bases = {'f': base_f, 'm': base_m}
 ```
 4.代码说明
+
 其中一个代码为不取对数的性别预测代码，
 另一个为取对数（防止浮点误差）的性别预测代码，
 这两个代码主要面向中文和柬文的性别预测，
 其中kcc.py为柬文的切分单字方法。
 
 训练数据部分如下：
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200224163914550.png)
+
 预测结果部分如下：
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200224163958101.png)
+
 准确率如下:
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200224165354481.png)
